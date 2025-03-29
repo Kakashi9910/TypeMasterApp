@@ -1,9 +1,12 @@
 import { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 
+
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
+  const URL = import.meta.env.VITE_BACKEND_URL
+
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -18,7 +21,7 @@ export function AuthProvider({ children }) {
 
   const fetchUser = async (token) => {
     try {
-      const response = await axios.get('http://localhost:5000/api/auth/user', {
+      const response = await axios.get(`${URL}/api/auth/user`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUser(response.data);
@@ -30,7 +33,7 @@ export function AuthProvider({ children }) {
   };
 
   const login = async (email, password) => {
-    const response = await axios.post('http://localhost:5000/api/auth/login', {
+    const response = await axios.post(`${URL}/api/auth/login`, {
       email,
       password
     });

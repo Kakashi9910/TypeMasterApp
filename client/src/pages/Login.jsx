@@ -34,21 +34,21 @@ function Login() {
         )}
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">
-            <div>
+            <div className='border-2 border-black'>
               <input
                 type="email"
                 required
-                className="input-field rounded-t-md"
+                className="input-field rounded-t-md h-6"
                 placeholder="Email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div>
+            <div className='border-2 border-black'>
               <input
                 type="password"
                 required
-                className="input-field rounded-b-md"
+                className="input-field rounded-b-md w-full h-6"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -56,7 +56,7 @@ function Login() {
             </div>
           </div>
 
-          <div>
+          <div >
             <button type="submit" className="btn-primary w-full">
               Sign in
             </button>

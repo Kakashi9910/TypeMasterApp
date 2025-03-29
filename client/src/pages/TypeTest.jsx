@@ -8,6 +8,7 @@ const SAMPLE_TEXTS = [
 ];
 
 function TypingTest() {
+  const URL = import.meta.env.VITE_BACKEND_URL
   const [text, setText] = useState('');
   const [userInput, setUserInput] = useState('');
   const [timeLeft, setTimeLeft] = useState(0);
@@ -58,7 +59,7 @@ function TypingTest() {
     setResults(results);
 
     try {
-      await axios.post('http://localhost:5000/api/sessions', {
+      await axios.post(`${URL}/api/sessions`, {
         wpm: results.wpm,
         accuracy: results.accuracy,
         totalErrors: results.characters - results.correctChars,
@@ -90,14 +91,14 @@ function TypingTest() {
         
         <div className="space-x-4 mb-6">
           <button 
-            className={`px-4 py-2 rounded ${testDuration === 15 ? 'bg-primary text-white' : 'bg-gray-200'}`}
+            className={`px-4 py-2 rounded ${testDuration === 15 ? 'bg-gray-200' : 'bg-primary text-black'}`}
             onClick={() => setTestDuration(15)}
             disabled={isTestActive}
           >
             15s
           </button>
           <button 
-            className={`px-4 py-2 rounded ${testDuration === 30 ? 'bg-primary text-white' : 'bg-gray-200'}`}
+            className={`px-4 py-2 rounded ${testDuration === 30 ? 'bg-gray-200' : 'bg-primary text-black'}`}
             onClick={() => setTestDuration(30)}
             disabled={isTestActive}
           >

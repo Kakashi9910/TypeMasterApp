@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 
 function Profile() {
+  const URL = import.meta.env.VITE_BACKEND_URL
   const [sessions, setSessions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState({
@@ -20,7 +21,7 @@ function Profile() {
 
   const fetchSessions = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/sessions/user', {
+      const response = await axios.get(`${URL}/api/sessions/user`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       

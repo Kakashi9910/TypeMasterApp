@@ -5,8 +5,8 @@ function Navbar() {
   const { user, logout } = useAuth();
 
   return (
-    <nav className="bg-secondary text-white shadow-lg">
-      <div className="max-w-7xl mx-auto px-4">
+    <nav className="bg-secondary shadow-lg">
+      <div className="max-w-8xl mx-auto px-4">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="text-xl font-bold">
