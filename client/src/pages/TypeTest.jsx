@@ -1,11 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
-const SAMPLE_TEXTS = [
-  "The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs.",
-  "How vexingly quick daft zebras jump! The five boxing wizards jump quickly.",
-  "Sphinx of black quartz, judge my vow. Two driven jocks help fax my big quiz.",
-];
 
 function TypingTest() {
   const URL = import.meta.env.VITE_BACKEND_URL
@@ -18,8 +13,19 @@ function TypingTest() {
   const [typingTimes, setTypingTimes] = useState([]);
   const [lastKeyTime, setLastKeyTime] = useState(null);
 
-  const startTest = useCallback(() => {
-    setText(SAMPLE_TEXTS[Math.floor(Math.random() * SAMPLE_TEXTS.length)]);
+  const fetchRandomText = async () => {
+    try {
+      const response = await axios.get('https://baconipsum.com/api/?type=all-meat&paras=1&format=text');
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching quote:', error);
+      return "The quick brown fox jumps over the lazy dog."; // fallback text
+    }
+  };
+
+  const startTest = useCallback(async() => {
+    const randomText = await fetchRandomText();
+    setText(randomText);
     setUserInput('');
     setTimeLeft(testDuration);
     setIsTestActive(true);
