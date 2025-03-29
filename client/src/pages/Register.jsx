@@ -54,7 +54,7 @@ function Register() {
               <input
                 type="email"
                 required
-                className="input-field"
+                className="input-field w-full"
                 placeholder="Email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -64,7 +64,7 @@ function Register() {
               <input
                 type="password"
                 required
-                className="input-field rounded-b-md"
+                className="input-field rounded-b-md w-full"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

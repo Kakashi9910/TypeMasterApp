@@ -38,7 +38,7 @@ function Login() {
               <input
                 type="email"
                 required
-                className="input-field rounded-t-md h-6"
+                className="input-field rounded-t-md w-full h-6"
                 placeholder="Email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
